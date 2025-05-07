@@ -32,12 +32,16 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 40px;
+            padding: 20px;
             width: 90%;
             max-width: 800px;
             box-shadow: 0 0 40px rgba(0,0,0,0.5);
             text-align: center;
             position: relative;
+            overflow: visible !important;
+    margin: 0 auto; /* Центрирование */
+    /*max-width: 100%; /* Занимает всю ширину */
+
         }
 
         h1 {
@@ -63,6 +67,7 @@
             margin: 40px 0;
             flex-wrap: wrap;
             perspective: 1000px;
+            overflow: visible !important;
         }
 
         .card {
@@ -98,6 +103,15 @@
             animation: pulse 1.5s infinite;
         }
 
+        /*.glow {
+    position: absolute;
+    top: -20px; /* Расширяем за пределы карты 
+    left: -20px;
+    width: calc(100% + 40px); /* Учитываем отступы 
+    height: calc(100% + 40px);
+    background: radial-gradient(circle at center, rgba(0,255,255,0.3) 0%, transparent 70%);
+    animation: glow 3s infinite alternate ease-in-out;
+}*/
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
@@ -183,6 +197,7 @@
             max-width: 300px;
             margin-left: auto;
             margin-right: auto;
+            display: none;
         }
 
         .reset-button:hover {
@@ -616,6 +631,8 @@ function selectCard(clickedCard) {
     setTimeout(() => {
         document.getElementById('loading').style.display = 'none';
     }, 500);
+ // Показать кнопку "Выбрать заново"
+ document.querySelector('.reset-button').style.display = 'block';
 
     isFirstClick = false;
 }
@@ -635,6 +652,7 @@ function resetApp() {
     });
     document.getElementById('result').innerHTML = "";
     document.getElementById('result').style.display = 'none'; // Скрыть блок
+    document.querySelector('.reset-button').style.display = 'none';
     isFirstClick = true;
 }
 </script>
